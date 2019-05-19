@@ -6,7 +6,19 @@ class PokemonList extends React.Component {
         name: '',
         imageUrl: '',
         pokemonIndex: '',
-        type: ''
+        types: '',
+        species: '',
+        height: '',
+        weight: '',
+        stats: {
+            hp: '',
+            attack: '',
+            defense: '',
+            speed: '',
+            specialAttack: '',
+            specialDefense: ''
+        },
+        abilities: ''
     }
 
     componentDidMount(){
@@ -15,38 +27,104 @@ class PokemonList extends React.Component {
         // const imageUrl = `https://github.com/PokeAPI/sprits/blob/master/sprites/pokemon/${pokemonIndex}.png?raw=true`
         const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex}.png`
 
-        this.pokeType();
+        this.pokeData();
 
         this.setState({
             name, 
             imageUrl, 
             pokemonIndex,
         });
+
+
     }
 
-    pokeType = async () => {
+    // Arrow function holding the code to gather all Pokemon data from PokeAPI
+    pokeData = async () => {
         const response = await Axios.get(this.props.url);
-        console.log(response.data.types[0].type.name);
-        this.setState({
-            type: response.data.types[0].type.name
+
+        // Declare variables to hold the stat information
+        let { hp, attack, defense, speed, specialAttack, specialDefense } = ''
+
+        response.data.stats.map(stat => {
+            // Map over the stats array and assign values through the switch statement
+            // eslint-disable-next-line default-case
+            switch(stat.stat.name) {
+                case 'hp':
+                    hp = stat['base_stat'];
+                    break;
+                case 'attack':
+                    attack = stat['base_stat'];
+                    break;  
+                case 'defense':
+                    defense = stat['base_stat'];
+                    break;
+                case 'speed':
+                    speed = stat['base_stat'];
+                    break;
+                case 'special-attack':
+                    specialAttack = stat['base_stat'];
+                    break;
+                case 'special-defense':
+                    specialDefense = stat['base_stat'];
+                    break;                  
+            }
         })
+
+        // Pokemon physical data
+        const height = response.data.height;
+        const weight = response.data.weight;
+        const types = response.data.types.map(type => type.type.name);
+
+        const abilities = response.data.abilities.map(ability => {
+            return ability.ability.name
+        });
+
+        this.setState({
+            types,
+            height,
+            weight,
+            stats: {
+                hp,
+                attack,
+                defense,
+                speed,
+                specialAttack,
+                specialDefense
+            },
+            abilities
+        });
     }
 
     render(){
-        
+        // Deconstruct the state object to reduce the number of repeat this.state declarations
+        const { hp, attack, defense, speed, specialAttack, specialDefense } = this.state.stats;
+        const { name, pokemonIndex, imageUrl, types, height, weight, abilities} = this.state;
 
         return(
             <div className = "ui card">
                 <div className="image">
-                    <img src= {this.state.imageUrl} alt="pokemon"/>
+                    <img src= {imageUrl} alt="pokemon"/>
                 </div>
                 <div className = "content">
                     <div className = "header">
-                        <div>{this.state.pokemonIndex}</div>
+                        <div>{name}</div>
                     </div>
                     <div className = "meta">
-                        <div>{this.state.name}</div>
-                        <div>{this.state.type}</div>
+                        <div>National No.: {pokemonIndex}</div>
+                        <div>Pokemon Type: {types}</div>
+                    </div>
+                    <div className="description">
+                        <div>Height: {height}</div>
+                        <div>Weight: {weight}</div>
+                        <h3>Stats</h3>
+                            <div>HP: {hp}</div>
+                            <div>Attack: {attack}</div>
+                            <div>Defense: {defense}</div>
+                            <div>Sp. Atk: {specialAttack}</div>
+                            <div>Sp. Def: {specialDefense}</div>
+                            <div>Speed: {speed}</div>
+                        <h3>Abilities</h3>
+                            <div>Abilities: {abilities}</div>
                     </div>
                 </div>
             </div>

@@ -16,7 +16,6 @@ class App extends React.Component {
         // Pass all the results of the api call into the state object
         // Results array = taken from pokeAPI when looking at the response object to a query
         this.setState({ pokelist: response.data['results'] })
-        console.log(this.state.pokelist);
     };
 
     render() {
