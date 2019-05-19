@@ -1,5 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
+import { BrowserRouter, Route } from 'react-router-dom';
+import PokemonData from './PokemonData';
 
 class PokemonList extends React.Component {
     state = {
@@ -101,6 +103,7 @@ class PokemonList extends React.Component {
         const { name, pokemonIndex, imageUrl, types, height, weight, abilities} = this.state;
 
         return(
+            <BrowserRouter>
             <div className = "ui card">
                 <div className="image">
                     <img src= {imageUrl} alt="pokemon"/>
@@ -128,6 +131,8 @@ class PokemonList extends React.Component {
                     </div>
                 </div>
             </div>
+            <Route path = "/pokemon/data" exact component = {PokemonData} />
+            </BrowserRouter>
         );
     }
 }
