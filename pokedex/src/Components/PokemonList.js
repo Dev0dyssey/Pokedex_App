@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class PokemonList extends React.Component {
     state = {
@@ -107,7 +108,7 @@ class PokemonList extends React.Component {
                 </div>
                 <div className = "content">
                     <div className = "header">
-                        <div>{name}</div>
+                        <div><Link to = {{pathname:"/pokemon/data", state:{name}}}>{name}</Link></div>
                     </div>
                     <div className = "meta">
                         <div>National No.: {pokemonIndex}</div>
