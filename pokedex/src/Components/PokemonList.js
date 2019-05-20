@@ -108,7 +108,7 @@ class PokemonList extends React.Component {
                 </div>
                 <div className = "content">
                     <div className = "header">
-                        <div><Link to = {{pathname:"/pokemon/data", state:{name}}}>{name}</Link></div>
+                        <div><Link to = {{pathname:"/pokemon/data", state: this.state}}>{name}</Link></div>
                     </div>
                     <div className = "meta">
                         <div>National No.: {pokemonIndex}</div>
