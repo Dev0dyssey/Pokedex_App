@@ -35,16 +35,19 @@ export default class PokemonData extends Component {
 
   render() {
     return (
-      <div className = "ui container">
-      <div className="ui items">
-        <div className="item">
-          <div className="image">
-            <img src={this.state.imageUrl} alt = "Pokemon" />
-          </div>
-          <div className="content">
-            <span className="header">{this.state.name}</span>
-            <div className="meta">
-              <span>Abilities</span>
+      <>
+      <div className = "container">
+      <div className = "card">
+          <img 
+            className="card-img-top" 
+            src= {this.state.imageUrl}
+            style = {{height: "150px", width: "150px"}}
+            alt = "Pokemon" />
+          <div className="card-body">
+            <h3 className = "card-title">{this.state.name}</h3>
+            <br/>
+            <div className="card-text">
+              <h2>Abilities</h2>
             </div>
             <div className="description">
               <p>{this.state.abilities}</p>
@@ -52,10 +55,10 @@ export default class PokemonData extends Component {
             <div className="extra">
               Evolution: {this.state.evolvedInto}
             </div>
+            </div>
           </div>
-        </div>
-      </div>
-      </div>
+          </div>
+        </>
     )
   }
 }

@@ -84,6 +84,7 @@ class PokemonList extends React.Component {
                 .join(' ')
         });
 
+
         this.setState({
             types,
             height,
@@ -128,13 +129,33 @@ class PokemonList extends React.Component {
                     <div className = "card-text">
                         <h5>Stats</h5>
                             <div className="progress">
-                                <div className="progress-bar" role = "progressbar" style = {{width: `${hp}%`}} aria-valuenow = {hp} aria-valuemin="0" aria-valuemax="100"></div>
-                                HP: {hp}</div>
-                            <div>Attack: {attack}</div>
-                            <div>Defense: {defense}</div>
-                            <div>Sp. Atk: {specialAttack}</div>
-                            <div>Sp. Def: {specialDefense}</div>
-                            <div>Speed: {speed}</div>
+                                <div className="progress-bar bg-danger" role = "progressbar" style = {{width: `${hp}%`}} aria-valuenow = {hp} aria-valuemin="0" aria-valuemax="100">HP: {hp}</div>
+                            </div>
+                            <br/>
+                            <div className="progress">
+                                <div className="progress-bar bg-warning" role = "progressbar" style = {{width: `${attack}%`}} aria-valuenow = {attack} aria-valuemin="0" aria-valuemax="100">Att: {attack}</div>
+                            </div>
+                            
+                            <br/>
+                            <div className="progress">
+                                <div className="progress-bar bg-info" role = "progressbar" style = {{width: `${defense}%`}} aria-valuenow = {defense} aria-valuemin="0" aria-valuemax="100">Def: {defense}</div>
+                            </div>
+                            
+                            <br />
+                            <div className="progress">
+                                <div className="progress-bar" role = "progressbar" style = {{width: `${specialAttack}%`}} aria-valuenow = {specialAttack} aria-valuemin="0" aria-valuemax="100">Sp. Atk: {specialAttack}</div>
+                            </div>
+                            
+                            <br />
+                            <div className="progress">
+                                <div className="progress-bar" role = "progressbar" style = {{width: `${specialDefense}%`}} aria-valuenow = {specialDefense} aria-valuemin="0" aria-valuemax="100">Sp. Def: {specialDefense}</div>
+                            </div>
+                            
+                            <br />
+                            <div className="progress">
+                                <div className="progress-bar bg-success" role = "progressbar" style = {{width: `${speed}%`}} aria-valuenow = {speed} aria-valuemin="0" aria-valuemax="100">Speed: {speed}</div>
+                            </div>
+                            
                         <br />
                         <h5>Abilities</h5>
                             <div>Abilities: {abilities}</div>
