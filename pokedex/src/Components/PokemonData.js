@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import evolution from '../api/pokedex';
 import Axios from 'axios'
 
 export default class PokemonData extends Component {
