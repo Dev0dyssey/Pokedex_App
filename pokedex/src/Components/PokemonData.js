@@ -35,6 +35,7 @@ export default class PokemonData extends Component {
 
   render() {
     return (
+      <div className = "ui container">
       <div className="ui items">
         <div className="item">
           <div className="image">
@@ -53,6 +54,7 @@ export default class PokemonData extends Component {
             </div>
           </div>
         </div>
+      </div>
       </div>
     )
   }

@@ -78,6 +78,10 @@ class PokemonList extends React.Component {
 
         const abilities = response.data.abilities.map(ability => {
             return ability.ability.name
+                .toLowerCase()
+                .split('-')
+                .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+                .join(' ')
         });
 
         this.setState({
@@ -102,33 +106,43 @@ class PokemonList extends React.Component {
         const { name, pokemonIndex, imageUrl, types, height, weight, abilities} = this.state;
 
         return(
-            <div className = "ui card">
-                <div className="image">
+            <>
+            <div className = "col-lg-3 col-sm-6 mb-5">
+                <div className = "card">
+                <div className="card-img-top">
                     <img src= {imageUrl} alt="pokemon"/>
                 </div>
-                <div className = "content">
-                    <div className = "header">
+                <div className = "card-body">
+                    <h3 className = "card-title">
                         <div><Link to = {{pathname:"/pokemon/data", state: this.state}}>{name}</Link></div>
-                    </div>
-                    <div className = "meta">
+                    </h3>
+                    <div className = "card-text">
                         <div>National No.: {pokemonIndex}</div>
                         <div>Pokemon Type: {types}</div>
                     </div>
-                    <div className="description">
+                    <div className="card-text">
                         <div>Height: {height}</div>
                         <div>Weight: {weight}</div>
-                        <h3>Stats</h3>
-                            <div>HP: {hp}</div>
+                    </div>
+                        <br/>
+                    <div className = "card-text">
+                        <h5>Stats</h5>
+                            <div className="progress">
+                                <div className="progress-bar" role = "progressbar" style = {{width: `${hp}%`}} aria-valuenow = {hp} aria-valuemin="0" aria-valuemax="100"></div>
+                                HP: {hp}</div>
                             <div>Attack: {attack}</div>
                             <div>Defense: {defense}</div>
                             <div>Sp. Atk: {specialAttack}</div>
                             <div>Sp. Def: {specialDefense}</div>
                             <div>Speed: {speed}</div>
-                        <h3>Abilities</h3>
+                        <br />
+                        <h5>Abilities</h5>
                             <div>Abilities: {abilities}</div>
                     </div>
                 </div>
+                </div>
             </div>
+            </>
         );
     }
 }
