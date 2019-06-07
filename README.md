@@ -1,5 +1,5 @@
 # Pokedex_App
-Application built over several days showcasing the list of available Pokemons and their details. Able to click into specific Pokemon to display their individual cards. App consumes the PokeAPI
+Application built over several days showcasing the list of available Pokemons and their details. Able to click into specific Pokemon to display their individual cards. App consumes the PokeAPI. App built as part of a technical challenge to showcase knowledge of API calls and working with React components (passed challenge requests to progress to next stage).
 
 ## Access
 
